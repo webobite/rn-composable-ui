@@ -2,7 +2,7 @@ import React from "react";
 
 // ****** EXAMPLE CONFIGS START ****************
 
-// import { appConfig, routes, getEvents } from "../examples/todo-app/layout";
+import { appConfig, routes, getEvents } from "../examples/todo-app/layout";
 // import { appConfig, routes, getEvents } from "../examples/sagar-poc/layout"; /// example with button clicks and routing with dynamic changes to screen
 // import { appConfig, routes, getEvents } from "../examples/app-three/layout"; /// example with NavBarComponent addeed and Tab Component added
 // import { appConfig, routes, getEvents } from "../examples/sagar-poc/example1";
@@ -37,11 +37,11 @@ import React from "react";
 //   getEvents,
 // } from "../examples/sagar-poc/3_4-screen-example-mobile/layout";
 
-import {
-  appConfig,
-  routes,
-  getEvents,
-} from "../examples/sagar-poc/with-jsonforms/layout";
+// import {
+//   appConfig,
+//   routes,
+//   getEvents,
+// } from "../examples/sagar-poc/with-jsonforms/layout";
 
 // import {
 //   appConfig,

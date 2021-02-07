@@ -39,75 +39,6 @@ const schema = {
 
 export const routes = {};
 
-// routes.routeOne = {
-//   0: {
-//     0: {
-//       // layout: null // evict the earlier 1st column, other way is to hide it
-//       layout: {
-//         colConfig: {
-//           // colSize: 0, // *** change the colSize
-//           colStyle: { display: "block" }, // *** hide the 1st column
-//         },
-//       },
-//     },
-//     1: {
-//       layout: {
-//         1: {
-//           // *** below we are adding a new row(this will replace current layout config values), and this will have 2 columns
-//           0: {
-//             // col no
-//             colSize: 10,
-//             idx: "About",
-//             label: "comp5 >> changed at runtime 1",
-//           },
-//           1: {
-//             // col no
-//             colSize: 10,
-//             idx: "About",
-//             label: "comp5 >> changed at runtime 2",
-//           },
-//         },
-//       },
-//     },
-//   },
-// };
-
-// routes.routeTwo = {
-//   "1.container": {
-//     "1.1.leftNavCol": {
-//       layout: null, // evict the earlier 1st column, other way is to hide it
-//       // layout: {
-//       //   colConfig: {
-//       //     // colSize: 0, // *** change the colSize
-//       //     colStyle: { display: "none" }, // *** hide the 1st column
-//       //   },
-//       // },
-//     },
-//     "1.2.bodyCol": {
-//       layout: {
-//         colConfig: {
-//           colSize: 11,
-//         },
-//         "1.2.1.bodyHeaderRow": {
-//           bodyHeader: {
-//             idx: "ActionComp",
-//           },
-//         },
-//         "1.2.2.bodyContentRow": {
-//           bodyContent: {
-//             idx: "RandomPic",
-//           },
-//         },
-//         "1.2.3.bodyFooterRow": {
-//           bodyFooter: {
-//             idx: "About",
-//           },
-//         },
-//       },
-//     },
-//   },
-// };
-
 routes.routeThree = {
   0: {
     // col no : 1
@@ -279,163 +210,79 @@ export const appConfig = {
   },
   layout: {
     // row no
-    0: {
-      // col no : 1
-      0: {
+    "1.container": {
+      rowConfig: {
+        rowSize: 1,
+        rowStyle: rowStyle,
+      },
+      // col no
+      "1.1.leftNavCol": {
         layout: {
           colConfig: {
-            colSize: 2.5,
-            height: "100vh",
+            colSize: 3,
+            colStyle: { backgroundColor: "grey" },
           },
-          // row 1
-          0: {
-            0: {
+          "1.1.leftNavHeaderRow": {
+            // row no
+            rowConfig: {
+              rowSize: 1,
+              rowStyle: rowStyle,
+            },
+            leftNavHeader: {
               // col no
+              colSize: 1,
               idx: "SideNavBar",
               label: "sideNavBar",
-              colStyle: { display: "flex", borderWidth: 1, height: "100vh" },
+              colStyle: {
+                borderColor: "cyan",
+                borderWidth: 4,
+                height: "100vh",
+                backgroundColor: "lightgreen",
+              },
             },
           },
         },
       },
-      // col no : 2
-      1: {
+      "1.2.bodyCol": {
+        rowConfig: {
+          rowSize: 1,
+          rowStyle: rowStyle,
+        },
         layout: {
           colConfig: {
-            colSize: 12,
-            height: "100vh",
-          },
-          0: {
-            // Row 1
-            0: {
-              // col no
-              colSize: 1,
-              idx: "DefaultScreen",
-              label: "defaultScreen",
-              colStyle: {
-                display: "flex",
-                borderWidth: 2,
-                //  borderColor: "yellow",
-                height: "50vh",
-              },
+            colSize: 11,
+            colStyle: {
+              backgroundColor: "grey",
             },
           },
-          // 1: {
-          //   // Row 2
-          //   0: {
-          //     // col no
-          //     colSize: 1,
-          //     idx: "Home",
-          //     label: "body-header",
-          //     colStyle: {
-          //       borderWidth: 2,
-          //       //  borderColor: "yellow",
-          //       height: "50vh",
-          //     },
-          //   },
-          // },
-          // Row 3
-          // 2: {
-          //   // Row 3
-          //   0: {
-          //     // col no
-          //     colSize: 1,
-          //     idx: "Home",
-          //     label: "body-footer",
-          //     colStyle: { borderWidth: 1, height: "10vh" },
-          //   },
-          // },
+          "1.2.1.bodyHeaderRow": {
+            rowConfig: {
+              rowSize: 1,
+              rowStyle: rowStyle,
+            },
+            bodyHeader: {
+              // col no
+              colSize: 1,
+              idx: "TodoApp1",
+              label: "todoAppComponent1",
+              colStyle: {
+                borderColor: "cyan",
+                alignSelf: "center",
+                borderWidth: 4,
+                height: "80vh",
+                backgroundColor: "skyblue",
+              },
+            //   passProps: {
+            //     _formData,
+            //     schema,
+            //     uiSchema,
+            //   },
+            },
+          },
         },
       },
     },
   },
-  // layout: {
-  //   colConfig: {
-  //     colSize: 1,
-  //   },
-  //   // row no
-  //   "1.container": {
-  //     rowConfig: {
-  //       rowSize: 1,
-  //       style: rowStyle,
-  //     },
-  //     // col no
-  //     "1.1.leftNavCol": {
-  //       layout: {
-  //         colConfig: {
-  //           colSize: 3,
-  //         },
-  //         "1.1.leftNavHeaderRow": {
-  //           // row no
-  //           rowConfig: {
-  //             // rowSize: 1,
-  //             rowStyle: {
-  //               height: "10vh",
-  //             },
-  //           },
-  //           leftNavHeader: {
-  //             // col no
-  //             colSize: 1,
-  //             idx: "Home",
-  //             label: "leftNavHeader",
-  //             colStyle: { borderWidth: 1 },
-  //           },
-  //         },
-  //         "1.1.leftNavBodyRow": {
-  //           // row no
-  //           rowConfig: {
-  //             // rowSize: 1,
-  //             rowStyle: {
-  //               height: "90vh",
-  //             },
-  //           },
-  //           leftNavBody: {
-  //             // col no
-  //             colSize: 1,
-  //             idx: "SideNavBar",
-  //             label: "sideNavBar",
-  //             colStyle: { borderWidth: 1 },
-  //           },
-  //         },
-  //       },
-  //     },
-  //     "1.2.bodyCol": {
-  //       layout: {
-  //         colConfig: {
-  //           colSize: 11,
-  //         },
-  //         "1.2.1.bodyHeaderRow": {
-  //           // row no
-  //           rowConfig: {
-  //             rowStyle: { height: "10vh" }, // TODO : If I change the row into 2 equal half it is also reflected into nav col
-  //           },
-  //           bodyHeader: {
-  //             // col no
-  //             colSize: 1,
-  //             idx: "DefaultScreen",
-  //             label: "defaultScreen",
-  //             schema,
-  //             colStyle: { borderWidth: 1 },
-  //           },
-  //         },
-  //       },
-  //     },
-  //   },
-  //   "2.container": {
-  //     // row no
-  //     rowConfig: {
-  //       rowSize: "0.21",
-  //       style: rowStyle,
-  //     },
-  //     footer: {
-  //       // col no
-  //       colSize: 1,
-  //       idx: "Home",
-  //       label: "footer",
-  //       colStyle: { borderWidth: 4 },
-  //     },
-  //   },
-  // },
 };
 
 // *************************************************
