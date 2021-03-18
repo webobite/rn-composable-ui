@@ -1,89 +1,51 @@
-import React from "react";
-
 // ****** EXAMPLE CONFIGS START ****************
+// FIXME: fix the component mount stage example with <label>-$init logic fix
+/*** example with json based forms  */
+const configs = {
+  "3_4-screen-example-mobile": "3_4-screen-example-mobile",
+  "3_4-screen-example-web": "3_4-screen-example-web",
+  "another-grid": "another-grid",
+  "app-one": "app-one",
+  "app-three": "app-three",
+  "app-two": "app-two",
+  "collapsible-leftnav": "collapsible-leftnav",
+  "component-mount": "component-mount",
+  "dashboard-demo": "dashboard-demo",
+  "dynamic-navigation": "dynamic-navigation",
+  "react-router-port": "react-router-port",
+  "state-mgmt": "state-mgmt",
+  "todo-app": "todo-app",
+  "vanilla-grid-layout": "vanilla-grid-layout",
+  "with-appstate": "with-appstate",
+  "with-calendar": "with-calendar",
+  "with-charts": "with-charts",
+  "with-jsonforms": "with-jsonforms",
+  "with-setLayout": "with-setLayout",
+  "with-setLayout (without hide)": "with-setLayout (without hide)",
+  "with-tailwind": "with-tailwind",
+};
+// FIXME: LOAD ABOVE OBJECT dynamically
+const selected = "3_4-screen-example-web";
 
-// import { appConfig, routes, getEvents } from "../examples/todo-app/layout";
-// import { appConfig, routes, getEvents } from "../examples/sagar-poc/layout"; /// example with button clicks and routing with dynamic changes to screen
-// import { appConfig, routes, getEvents } from "../examples/app-three/layout"; /// example with NavBarComponent addeed and Tab Component added
-// import { appConfig, routes, getEvents } from "../examples/sagar-poc/example1";
+let moduleConfig = require(`./rn-config-tyler/packages/demo/examples/${configs[selected]}/layout`);
+const getComponents = moduleConfig.getComponents;
+const fetchConfig = moduleConfig.fetchConfig;
 
-// import {
-//   appConfig,
-//   routes,
-//   getEvents,
-// } from "../examples/sagar-poc/with-appstate/layout";
+// ****** EXAMPLE CONFIGS END ****.************
+import { registerRootComponent } from "expo";
+import React from "react";
+import Entry from "./rn-config-tyler/packages/demo/components/Entry";
+import { App, init } from "./rn-config-tyler/packages/demo/helpers/lib/src";
 
-// import {
-//   appConfig,
-//   routes,
-//   getEvents,
-// } from "../examples/sagar-poc/with-setLayout/layout";
-
-// import {
-//   appConfig,
-//   routes,
-//   getEvents,
-// } from "../examples/sagar-poc/3_4-screen-example-web/layout";
-
-// import {
-//   appConfig,
-//   routes,
-//   getEvents,
-// } from "../examples/sagar-poc/with-calendar/layout";
-
-// import {
-//   appConfig,
-//   routes,
-//   getEvents,
-// } from "../examples/sagar-poc/3_4-screen-example-mobile/layout";
-
-import {
-  appConfig,
-  routes,
-  getEvents,
-} from "../examples/sagar-poc/with-jsonforms/layout";
-
-// import {
-//   appConfig,
-//   routes,
-//   getEvents,
-// } from "../examples/vanilla-grid-layout/layout"; /// starter example with nav bars and changes to content area
-// import { appConfig, routes, getEvents } from "../examples/collapsible-leftnav/layout"; /// example with button clicks and routing with dynamic changes to screen
-// import { appConfig, routes, getEvents } from "../examples/another-grid/layout"; /// another example with changes
-
-// ****** EXAMPLE CONFIGS END ****************
-import WrappedApp from "./WrappedApp";
-
-// **************************************************
-// TODO uncomment below, and comment section at very bottom for non-codesandbox
-// **************************************************
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { registerRootComponent } = require("expo");
-registerRootComponent(() => (
-  // {/* FIXME: debug=true below results in error */}
-  <WrappedApp
-    appConfig={appConfig}
-    routes={routes}
-    debug={false}
-    getEvents={getEvents}
-  />
-));
-
-// **************************************************
-// TODO: below section to make it run on codesandbox.io
-// **************************************************
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-// const { render } = require("react-dom");
-// const rootElement = document.getElementById("root");
-// render(
-//   <React.StrictMode>
-//     {/*
-//       `appConfig` is the original layout configuration for initial render
-//       `routes` is the routes object (multiple possible layout configurations possible) for later renders
-//       `debug` determines that whether `debugging` related features are enabled or not along with router (e.g. json tree)
-//     */}
-//     <WrappedApp appConfig={appConfig} routes={routes} debug={false} />
-//   </React.StrictMode>,
-//   rootElement
-// );
+if (process.env.REACT_NATIVE_DEMO == "true") {
+  init(moduleConfig, fetchConfig, getComponents).then((passProps) => {
+    registerRootComponent(() => (
+      <Entry debug={true} {...passProps} modules={configs} />
+    ));
+  });
+} else {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  init(moduleConfig, fetchConfig, getComponents).then((passProps) => {
+    registerRootComponent(() => <App debug={true} {...passProps} />);
+  });
+}
